@@ -5,6 +5,7 @@ Route::get('/', 'StoreController@main' );
 // larael auth routes and users
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin-login', 'Auth\LoginController@admin_login');
 Route::resource('users','UserController')->only(['show','update']);
 Route::post('forgot_password', 'Auth\ResetPasswordController@forgot_password');
 Route::get('password/reset', 'Auth\ResetPasswordController@reset_password_form');

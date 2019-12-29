@@ -40,25 +40,24 @@
                 <i class="fa fa-check ml-1"></i>
                 محصول مورد نظر به سبد خرید اضافه شد.
             </div>
-            <div class="cart-fav-box d-flex align-items-center">
+            <hr>
+            <div class="cart-fav-box">
 
-                <div class="product-favourite ml-4">
-                    <a href="#" class="favme fa fa-heart"></a>
+                <h4> اطلاعات فروشگاه </h4>
+                <div class="alert alert-info my-3">
+                    <ul>
+                        <li>
+                            <b> نام فروشگاه :  </b> {{$product->admin->name}}
+                        </li>
+                        <li>
+                            <b> شماره تماس :  </b> {{$product->admin->phone}}
+                        </li>
+                    </ul>
                 </div>
 
-                @if ($product->status == 1)
-                    <button type="submit" name="addtocart" value="{{$product->id}}" class="btn essence-btn"> اضافه کردن به سبد خرید </button>
-                @else
-                    <button type="button" disabled class="btn essence-btn"> ناموجود </button>
-                @endif
 
             </div>
         </div>
     </section>
-
-    @if ( count( $products = $product->similar_products() ) )
-        <hr>
-        @include('store.partials.products_carousel', ['title' => 'محصولات مشابه'])
-    @endif
 
 @endsection

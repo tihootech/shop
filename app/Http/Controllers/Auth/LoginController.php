@@ -23,6 +23,15 @@ class LoginController extends Controller
         \Auth::login($user);
     }
 
+    public function admin_login()
+    {
+        if (auth()->check()) {
+            return redirect('home');
+        }else {
+            return view('auth.login', ['admin_login' => true]);
+        }
+    }
+
     public function username()
     {
         return 'phone';

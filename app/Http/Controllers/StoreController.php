@@ -29,10 +29,13 @@ class StoreController extends Controller
     {
         $products = Product::query();
         if ($request->min && is_numeric($request->min)) {
-            $products->where('price', '>', $request->min);
+            $products = $products->where('price', '>', $request->min);
         }
         if ($request->max && is_numeric($request->max)) {
-            $products->where('price', '<', $request->max);
+            $products = $products->where('price', '<', $request->max);
+        }
+        if ($request->q) {
+            $products = $products->where('name', 'like', "%$request->q%");
         }
         if ($request->order && in_array( $request->order, [
             'price-asc','date-asc', 'discount-asc',
@@ -43,7 +46,7 @@ class StoreController extends Controller
             if ($order[0]=='date') {
                 $order[0]='created_at';
             }
-            $products->orderBy($order[0],$order[1]);
+            $products = $products->orderBy($order[0],$order[1]);
         }
         $total_products = $products->count();
         $products = $products->paginate(12)->withPath(url()->full());

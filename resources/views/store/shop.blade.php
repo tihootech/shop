@@ -6,7 +6,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="page-title text-center">
-                        <h2> {{ $cat->id ? ($cat->title ?? '') : 'همه محصولات' }} </h2>
+                        <h2> لیست محصولات </h2>
                     </div>
                 </div>
                 <hr class="col-12 m-0 p-0">
@@ -19,22 +19,6 @@
             <div class="row">
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="shop_sidebar_area">
-
-                        @if (cats()->count())
-                            <div class="widget catagory mb-50">
-
-                                <h6 class="widget-title mb-30">دسته بندی محصولات</h6>
-
-                                <div class="catagories-menu">
-                                    <ul id="menu-content2" class="menu-content collapse show">
-                                        @foreach (cats() as $main_category)
-                                            @include('store.partials.ul')
-                                        @endforeach
-                                    </ul>
-                                </div>
-
-                            </div>
-                        @endif
 
                         <div class="widget price mb-50">
 

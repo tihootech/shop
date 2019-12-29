@@ -1,11 +1,15 @@
 <form action="{{url()->current()}}">
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 form-group">
+            <label for="product-name"> نام محصول </label>
+            <input type="number" id="product-name" class="form-control" name="q" value="{{request('q')}}">
+        </div>
+        <div class="col-6 form-group">
             <label for="min"> قیمت از </label>
             <input type="number" id="min" class="form-control" name="min" value="{{request('min')}}">
         </div>
-        <div class="col-6">
+        <div class="col-6 form-group">
             <label for="max"> قیمت تا </label>
             <input type="number" id="max" class="form-control" name="max" value="{{request('max')}}">
         </div>

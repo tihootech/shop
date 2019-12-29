@@ -13,6 +13,11 @@ class Product extends Model
         return self::where('id', '<>', $this->id)->inRandomOrder()->take(6)->get();
     }
 
+    public function admin()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function cost()
     {
         return $this->discount ? ( $this->price - floor($this->price * $this->discount / 100) ) : $this->price;

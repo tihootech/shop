@@ -18,10 +18,6 @@
             </div>
         @endif
 
-        <!-- Favourite -->
-        <div class="product-favourite">
-            <a href="#" class="favme fa fa-heart"></a>
-        </div>
     </div>
     <!-- Product Description -->
     <div class="product-description">

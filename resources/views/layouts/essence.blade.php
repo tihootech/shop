@@ -27,8 +27,11 @@
     <header class="header_area" dir="ltr">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Classy Menu -->
-            <nav class="classy-navbar" id="essenceNav" dir="rtl">
-
+            <nav class="classy-navbar d-flex justify-content-end" id="essenceNav" dir="rtl">
+                <form class="form-inline" action="{{url('shop')}}" method="get">
+                    <input type="text" name="q" value="{{request('q')}}" placeholder="جستجوی محصول" class="form-control">
+                    <button type="submit" class="btn btn-primary mx-1"> <i class="fa fa-search"></i> جستجو </button>
+                </form>
             </nav>
 
             <!-- Header Meta Data -->
@@ -40,13 +43,6 @@
                 <!-- User Login Info -->
                 <div class="user-login-info" title="ناحیه کاربری" data-toggle="tooltip">
                     <a href="{{url('home')}}"><img src="{{asset('essence/img/core-img/user.svg')}}" alt=""></a>
-                </div>
-                <!-- Cart Area -->
-                <div class="cart-area" title="سبد خرید" data-toggle="tooltip">
-                    <a href="#" id="essenceCartBtn">
-                        <img src="{{asset('essence/img/core-img/bag.svg')}}" alt="">
-                        <span id="header-basket-count">{{cart_products_count()}}</span>
-                    </a>
                 </div>
             </div>
 

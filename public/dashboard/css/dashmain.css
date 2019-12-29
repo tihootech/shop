@@ -2570,6 +2570,18 @@ fieldset:disabled a.btn {
   border-color: #5c3286;
 }
 
+.btn-rose {
+  color: #FFF;
+  background-color: #e83e8c;
+  border-color: #e83e8c;
+}
+
+.btn-rose:hover {
+  color: #FFF;
+  background-color: #5c3286;
+  border-color: #5c3286;
+}
+
 .btn-primary:focus, .btn-primary.focus {
   -webkit-box-shadow: 0 0 0 0 rgba(0, 150, 136, 0.5);
           box-shadow: 0 0 0 0 rgba(0, 150, 136, 0.5);
