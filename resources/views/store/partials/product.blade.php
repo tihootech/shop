@@ -23,7 +23,8 @@
     <div class="product-description">
         {{-- <span>mango</span> --}}
         <a href="{{url("product/$product->name")}}">
-            <h6> {{$product->name}} </h6>
+            <h5> {{$product->name}} </h5>
+            <h6 class="text-primary"> فروشگاه : {{$product->admin->name ?? '-'}} </h6>
         </a>
         <p class="product-price">
             @if ($product->status == -1)
