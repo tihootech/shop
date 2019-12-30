@@ -3,12 +3,12 @@
         @if ($product->image)
             <img src="{{asset($product->image->path)}}" alt="{{$product->name}}">
         @else
-            <img src="{{asset('essence/img/tihootech-long.png')}}" alt="{{$product->name}}">
+            <img src="{{asset('essence/img/no-img.png')}}" alt="{{$product->name}}">
         @endif
         @if ($product->last_image)
             <img class="hover-img" src="{{asset($product->last_image->path)}}" alt="{{$product->name}}">
         @else
-            <img class="hover-img" src="{{asset('essence/img/tihootech-long.png')}}" alt="{{$product->name}}">
+            <img class="hover-img" src="{{asset('essence/img/no-img.png')}}" alt="{{$product->name}}">
         @endif
 
         <!-- Product Badge -->
