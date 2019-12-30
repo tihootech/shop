@@ -35,11 +35,6 @@
             @endif
             <p class="product-desc">{{$product->info}}</p>
 
-
-            <div id="product-added" class="alert alert-info animated flash" style="display:none">
-                <i class="fa fa-check ml-1"></i>
-                محصول مورد نظر به سبد خرید اضافه شد.
-            </div>
             <hr>
             <div class="cart-fav-box">
 

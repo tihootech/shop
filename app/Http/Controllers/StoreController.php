@@ -16,14 +16,15 @@ class StoreController extends Controller
     public function main()
     {
         $no_search = null;
-        return view('store.main', compact('no_search'));
+        $stores = User::whereType('admin')->latest()->get();
+        return view('store.main', compact('no_search', 'stores'));
     }
 
     public function single_product($name)
     {
-        $product = Product::where('name',$name)->first();
-        if(!$product) abort(404);
-        return view('store.single_product', compact('product'));
+        $product = Product::where('name',$name)->firstOrFail();
+        $shop_name = $product->admin->details->title ?? '';
+        return view('store.single_product', compact('product', 'shop_name'));
     }
 
     public function shop($title, Request $request)
@@ -31,6 +32,7 @@ class StoreController extends Controller
 
         $admin_details = AdminDetail::whereTitle($title)->firstOrFail();
         $admin = $admin_details->admin;
+        $shop_name = $admin_details->title ?? '';
 
         $products = Product::where('admin_id', $admin->id);
         if ($request->min && is_numeric($request->min)) {
@@ -56,15 +58,7 @@ class StoreController extends Controller
         $total_products = $products->count();
         $products = $products->paginate(12)->withPath(url()->full());
 
-        return view('store.shop', compact('products','total_products'));
-    }
-
-    public function checkout()
-    {
-        $cities = \App\City::all();
-        $states = \App\State::all();
-        $products = cart_products();
-        return view('store.checkout', compact('cities', 'states', 'products'));
+        return view('store.shop', compact('products', 'shop_name', 'total_products'));
     }
 
     public function login(Request $request)
@@ -95,31 +89,5 @@ class StoreController extends Controller
         LoginController::log_him_in($user);
         Helper::message('حساب کاربری شما با موفقیت ایجاد شد و وارد حساب کاربری خود شدید.');
         return back();
-    }
-
-    public function pay(Request $request)
-    {
-        if ($user_id = auth()->id()) {
-            $data = $request->validate([
-                'full_name' => 'required|string|min:5|max:100',
-                'phone' => 'required|digits:11',
-                'state' => 'required|exists:states,id',
-                'postcode' => 'required|digits:10',
-                'address' => 'required|string|min:10',
-                'description' => 'nullable|string',
-            ]);
-            $data['user_id'] = $user_id;
-
-            $order = Order::create($data);
-            OrderedProduct::make($order->id);
-
-            Helper::message('سفارش شما با موفقیت در سیستم ثبت شد.');
-
-            session([ 'cart_products' => [] ]);
-            return redirect('orders');
-
-        }else {
-            return back()->withErrors(['لطفا ابتدا وارد حساب کاربری خود شوید']);
-        }
     }
 }

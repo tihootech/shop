@@ -29,7 +29,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar d-flex justify-content-end" id="essenceNav" dir="rtl">
                 @if (url()->current() != url('/'))
-                    <form class="form-inline" action="{{url('shop')}}" method="get">
+                    <form class="form-inline" action="{{url($shop_name)}}" method="get">
                         <input type="text" name="q" value="{{request('q')}}" placeholder="جستجوی محصول" class="form-control">
                         <button type="submit" class="btn btn-primary mx-1"> <i class="fa fa-search"></i> جستجو </button>
                     </form>
@@ -39,12 +39,13 @@
             <!-- Header Meta Data -->
             <div class="header-meta d-flex clearfix justify-content-end">
                 <!-- Favourite Area -->
-                <div class="favourite-area" title="صفحه اصلی فروشگاه" data-toggle="tooltip">
-                    <a href="{{url('/')}}"><img src="{{asset('essence/img/core-img/store.png')}}" alt=""></a>
-                </div>
-                <!-- User Login Info -->
-                <div class="user-login-info" title="ناحیه کاربری" data-toggle="tooltip">
-                    <a href="{{url('home')}}"><img src="{{asset('essence/img/core-img/user.svg')}}" alt=""></a>
+                @isset($shop_name)
+                    <div class="favourite-area" title="صفحه اصلی فروشگاه" data-toggle="tooltip">
+                        <a href="{{url($shop_name)}}"><img src="{{asset('essence/img/core-img/store.png')}}" alt=""></a>
+                    </div>
+                @endisset
+                <div class="favourite-area" title="صفحه اصلی وبسایت" data-toggle="tooltip">
+                    <a href="{{url('/')}}"> <img src="{{asset('essence/img/core-img/home.svg')}}"> </a>
                 </div>
             </div>
 
@@ -70,9 +71,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <p>
-                        made with
-                        <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                        <a href="http://tihootech" target="_blank">TihooTech</a>
+                        پروژه فروشگاه آنلاین
                     </p>
                 </div>
             </div>
