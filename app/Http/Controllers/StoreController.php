@@ -20,9 +20,10 @@ class StoreController extends Controller
         return view('store.main', compact('no_search', 'stores'));
     }
 
-    public function single_product($name)
+    public function single_product($shop_name, $product_name)
     {
-        $product = Product::where('name',$name)->firstOrFail();
+        $details = AdminDetail::where('title', $shop_name)->firstOrFail();
+        $product = Product::where('admin_id', $details->admin_id)->where('name',$product_name)->firstOrFail();
         $shop_name = $product->admin->details->title ?? '';
         return view('store.single_product', compact('product', 'shop_name'));
     }

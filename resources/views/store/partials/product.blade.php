@@ -22,7 +22,7 @@
     <!-- Product Description -->
     <div class="product-description">
         {{-- <span>mango</span> --}}
-        <a href="{{url("product/$product->name")}}">
+        <a href="{{url("product/$shop_name/$product->name")}}">
             <h5> {{$product->name}} </h5>
             <h6 class="text-primary"> فروشگاه : {{$product->admin->name ?? '-'}} </h6>
         </a>
@@ -42,7 +42,7 @@
         <div class="hover-content">
             <!-- Add to Cart -->
             <div class="add-to-cart-btn">
-                <a href="{{url("product/$product->name")}}" class="btn essence-btn"> <i class="fa fa-eye ml-1"></i> مشاهده </a>
+                <a href="{{url("product/$shop_name/$product->name")}}" class="btn essence-btn"> <i class="fa fa-eye ml-1"></i> مشاهده </a>
             </div>
         </div>
     </div>
