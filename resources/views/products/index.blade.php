@@ -11,10 +11,7 @@
                     <th> نام محصول </th>
                     <th> قیمت </th>
                     <th> تخفیف </th>
-                    <th> نوع فروش </th>
-                    <th> زیرشاخه </th>
                     <th> تعداد تصاویر </th>
-                    <th> داغ </th>
                     <th> وضعیت </th>
                     <th colspan="3"> عملیات </th>
                 </tr>
@@ -28,12 +25,7 @@
                         <td title="قیمت نهایی {{toman($product->cost())}}" data-toggle="tooltip">
                             {{$product->discount ?? 0}}%
                         </td>
-                        <td> {{translate($product->sell_type)}} </td>
-                        <td @if($product->category) title="{{$product->category->breadcrumb()}}" data-toggle="tooltip" @endif>
-                            {{$product->category->title ?? '-'}}
-                        </td>
                         <td> {{$product->images->count()}} </td>
-                        <td> {!! coc($product->hot) !!} </td>
                         <td>
                             @if ($product->status == 1)
                                 <i class="fa fa-check text-success ml-1"></i>

@@ -8,14 +8,15 @@ use App\Product;
 use App\Order;
 use App\OrderedProduct;
 use App\User;
+use App\AdminDetail;
 
 class StoreController extends Controller
 {
 
     public function main()
     {
-        $latest = Product::latest();
-        return view('store.main', compact('latest') );
+        $no_search = null;
+        return view('store.main', compact('no_search'));
     }
 
     public function single_product($name)
@@ -27,8 +28,11 @@ class StoreController extends Controller
 
     public function shop($title, Request $request)
     {
-        dd($title);
-        $products = Product::query();
+
+        $admin_details = AdminDetail::whereTitle($title)->firstOrFail();
+        $admin = $admin_details->admin;
+
+        $products = Product::where('admin_id', $admin->id);
         if ($request->min && is_numeric($request->min)) {
             $products = $products->where('price', '>', $request->min);
         }

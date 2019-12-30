@@ -15,4 +15,9 @@ class AdminDetail extends Model
 		$ad->save();
 		return $ad;
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

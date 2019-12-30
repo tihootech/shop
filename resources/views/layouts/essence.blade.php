@@ -28,10 +28,12 @@
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Classy Menu -->
             <nav class="classy-navbar d-flex justify-content-end" id="essenceNav" dir="rtl">
-                <form class="form-inline" action="{{url('shop')}}" method="get">
-                    <input type="text" name="q" value="{{request('q')}}" placeholder="جستجوی محصول" class="form-control">
-                    <button type="submit" class="btn btn-primary mx-1"> <i class="fa fa-search"></i> جستجو </button>
-                </form>
+                @if (url()->current() != url('/'))
+                    <form class="form-inline" action="{{url('shop')}}" method="get">
+                        <input type="text" name="q" value="{{request('q')}}" placeholder="جستجوی محصول" class="form-control">
+                        <button type="submit" class="btn btn-primary mx-1"> <i class="fa fa-search"></i> جستجو </button>
+                    </form>
+                @endif
             </nav>
 
             <!-- Header Meta Data -->

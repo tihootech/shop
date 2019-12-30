@@ -18,7 +18,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::paginate(25);
+        $products = Product::where('admin_id', auth()->id())->paginate(25);
         return view('products.index', compact('products'));
     }
 
@@ -35,7 +35,7 @@ class ProductController extends Controller
             return back()->withInput()->withErrors([$error]);
         }
         foreach ($request->name as $name) {
-            if ($found = Product::where('name', $name)->first()) {
+            if ($found = Product::where('admin_id', auth()->id())->where('name', $name)->first()) {
                 $error = "شما قبلا از نام '$name' برای یکی از محصولات خود استفاده کرده اید.";
                 return back()->withInput()->withErrors([$error]);
             }
@@ -104,10 +104,18 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $validated_data = self::validation($product->id);
-        $product->update($validated_data);
-        Helper::flash();
-        return redirect('products');
+        if ($product->admin_id == auth()->id()) {
+            $found = Product::where('id', '<>', $product->id)->where('admin_id', $product->admin_id)->where('name', $request->name)->first();
+            if ($found) {
+                return back()->withErrors(['در این فروشگاه، قبلا از این نام برای یکی از محصولات استفاده شده است.']);
+            }
+            $validated_data = self::validation($product->id);
+            $product->update($validated_data);
+            Helper::flash();
+            return redirect('products');
+        }else {
+            abort(403);
+        }
     }
 
     public function destroy(Product $product)
@@ -132,9 +140,8 @@ class ProductController extends Controller
 
     public static function validation($id=0,$suffix=null)
     {
-        $unique = $id ? "|unique:products,name,$id" : "";
         return request()->validate([
-            "name$suffix" => "required|string|max:100".$unique,
+            "name$suffix" => "required|string|max:100",
             "price$suffix" => "required|integer",
             "discount$suffix" => "nullable|integer|between:0,100",
             "info$suffix" => "nullable|string",

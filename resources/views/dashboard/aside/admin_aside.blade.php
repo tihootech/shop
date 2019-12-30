@@ -1,5 +1,5 @@
 @php
-    $hrefs = ['cats', 'products', 'products/create', 'orders'];
+    $hrefs = ['products', 'products/create'];
 @endphp
 <li class="treeview @if(expanded($hrefs)) is-expanded @endif">
     <a class="app-menu__item" href="#" data-toggle="treeview">
@@ -9,14 +9,11 @@
     </a>
     <ul class="treeview-menu">
         <li>
-            <a class="treeview-item @if(active($hrefs[1])) active @endif" href="{{url($hrefs[1])}}">
+            <a class="treeview-item @if(active($hrefs[0])) active @endif" href="{{url($hrefs[0])}}">
                 <i class="icon fa fa-eye"></i> مشاهده محصولات
             </a>
-            <a class="treeview-item @if(active($hrefs[2])) active @endif" href="{{url($hrefs[2])}}">
+            <a class="treeview-item @if(active($hrefs[1])) active @endif" href="{{url($hrefs[1])}}">
                 <i class="icon fa fa-plus"></i> اضافه کردن محصولات
-            </a>
-            <a class="treeview-item @if(active($hrefs[3])) active @endif" href="{{url($hrefs[3])}}">
-                <i class="icon fa fa-list"></i> لیست سفارشات
             </a>
         </li>
     </ul>
