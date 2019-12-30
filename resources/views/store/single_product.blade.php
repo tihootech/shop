@@ -48,7 +48,7 @@
                             <b> شماره تماس :  </b> {{$product->admin->phone ?? '-'}}
                         </li>
                         <li>
-                            <b> آدرش :  </b> {{$product->admin->details->address ?? 'تعریف نشده'}}
+                            <b> آدرس :  </b> {{$product->admin->details->address ?? 'تعریف نشده'}}
                         </li>
                     </ul>
                 </div>
