@@ -33,4 +33,5 @@ Route::post('store/checkout','StoreController@pay');
 Route::post('store/login','StoreController@login');
 Route::post('store/register','StoreController@register');
 Route::get('product/{shop_name}/{product_name}', 'StoreController@single_product');
+Route::get('shop', 'StoreController@shop');
 Route::get('{title}', 'StoreController@shop');

@@ -15,9 +15,9 @@ class StoreController extends Controller
 
     public function main()
     {
-        $no_search = null;
         $stores = User::whereType('admin')->latest()->get();
-        return view('store.main', compact('no_search', 'stores'));
+        $products = Product::inRandomOrder()->take(6)->get();
+        return view('store.main', compact('stores', 'products'));
     }
 
     public function single_product($shop_name, $product_name)
@@ -28,14 +28,17 @@ class StoreController extends Controller
         return view('store.single_product', compact('product', 'shop_name'));
     }
 
-    public function shop($title, Request $request)
+    public function shop(Request $request, $title = null)
     {
 
-        $admin_details = AdminDetail::whereTitle($title)->firstOrFail();
-        $admin = $admin_details->admin;
+        $admin_details = $title ? AdminDetail::whereTitle($title)->firstOrFail() : null;
         $shop_name = $admin_details->title ?? '';
 
-        $products = Product::where('admin_id', $admin->id);
+        $products = Product::query();
+        if ($admin_details) {
+            $products = $products->where('admin_id', $admin_details->admin_id);
+        }
+
         if ($request->min && is_numeric($request->min)) {
             $products = $products->where('price', '>', $request->min);
         }

@@ -10,6 +10,7 @@
             </div>
         </div>
     </section>
+
     <section class="mb-5">
         <h2 class="text-center mb-4"> لیست فروشگاه ها </h2>
         <div class="container">
@@ -29,6 +30,17 @@
             </div>
         </div>
     </section>
+    <hr>
+    @if (count($products))
+        @include('store.partials.products_carousel', ['title' => 'محصولاتی از همه فروشگاه ها'])
+    @endif
+    <div class="container">
+        <div class="card mb-5">
+            <div class="card-body text-center">
+                <a href="{{url("shop")}}" class="dinar btn essence-btn"> مشاهده همه محصولات از همه فروشگاه ها </a>
+            </div>
+        </div>
+    </div>
 
 
 @endsection
