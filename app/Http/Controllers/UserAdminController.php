@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\AdminDetail;
+use App\Product;
 
 class UserAdminController extends Controller
 {
@@ -57,8 +58,9 @@ class UserAdminController extends Controller
 
     public function destroy_admin($user_id)
     {
-        $admin = User::find($user_id);
+        $admin = User::findOrFail($user_id);
         $admin->delete();
+        Product::where('admin_id', $admin->id)->delete();
         return back()->withMessage('ادمین مورد نظر از سیستم حذف شد.');
     }
 
