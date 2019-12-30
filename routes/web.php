@@ -10,7 +10,9 @@ Route::resource('users','UserController')->only(['show','update']);
 Route::post('forgot_password', 'Auth\ResetPasswordController@forgot_password');
 Route::get('password/reset', 'Auth\ResetPasswordController@reset_password_form');
 Route::post('reset_password', 'Auth\ResetPasswordController@reset_password');
-Route::post('new_admin', 'UserAdminController@new_admin');
+Route::post('user_admin', 'UserAdminController@new_admin');
+Route::get('admins/{id}/edit', 'UserAdminController@edit_admin');
+Route::put('user_admin/{id}', 'UserAdminController@update_admin');
 Route::get('admins/list', 'UserAdminController@list_admins');
 Route::delete('admins/{user_id}', 'UserAdminController@destroy_admin');
 
@@ -26,9 +28,9 @@ Route::delete('products/images/{image}', 'ProductController@delete_image');
 
 
 // online store output
-Route::get('shop','StoreController@shop');
 Route::get('store/checkout','StoreController@checkout');
 Route::post('store/checkout','StoreController@pay');
 Route::post('store/login','StoreController@login');
 Route::post('store/register','StoreController@register');
-Route::get('{name}', 'StoreController@single_product');
+Route::get('product/{name}', 'StoreController@single_product');
+Route::get('{title}', 'StoreController@shop');

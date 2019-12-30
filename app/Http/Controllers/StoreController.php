@@ -25,8 +25,9 @@ class StoreController extends Controller
         return view('store.single_product', compact('product'));
     }
 
-    public function shop(Request $request)
+    public function shop($title, Request $request)
     {
+        dd($title);
         $products = Product::query();
         if ($request->min && is_numeric($request->min)) {
             $products = $products->where('price', '>', $request->min);

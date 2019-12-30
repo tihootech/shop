@@ -11,6 +11,7 @@
 							<th scope="col"> ردیف </th>
 							<th scope="col"> نام </th>
 							<th scope="col"> شماره تماس </th>
+							<th scope="col"> مسیر وبسایت </th>
 							<th scope="col" colspan="2"> عملیات </th>
 						</tr>
 					</thead>
@@ -21,7 +22,12 @@
 								<td> {{ $admin->name }} </td>
 								<td> {{ $admin->phone }} </td>
 								<td>
-									<a href="#{{--url("admins/$admin->id/edit")--}}" class="text-success" title="ویرایش" data-toggle="tooltip">
+									@if ($admin->details)
+										<a href="{{url($admin->details->title)}}" target="_blank"> {{url($admin->details->title)}} </a>
+									@endif
+								</td>
+								<td>
+									<a href="{{url("admins/$admin->id/edit")}}" class="text-success" title="ویرایش" data-toggle="tooltip">
 										<i class="fa fa-edit"></i>
 									</a>
 								</td>

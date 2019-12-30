@@ -47,10 +47,13 @@
                 <div class="alert alert-info my-3">
                     <ul>
                         <li>
-                            <b> نام فروشگاه :  </b> {{$product->admin->name}}
+                            <b> نام فروشگاه :  </b> {{$product->admin->name ?? '-'}}
                         </li>
                         <li>
-                            <b> شماره تماس :  </b> {{$product->admin->phone}}
+                            <b> شماره تماس :  </b> {{$product->admin->phone ?? '-'}}
+                        </li>
+                        <li>
+                            <b> آدرش :  </b> {{$product->admin->details->address ?? 'تعریف نشده'}}
                         </li>
                     </ul>
                 </div>

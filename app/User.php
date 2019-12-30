@@ -17,6 +17,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function details()
+    {
+        return $this->hasOne(AdminDetail::class, 'admin_id');
+    }
+
     public function update_phone($phone)
     {
         $this->phone = $phone;
