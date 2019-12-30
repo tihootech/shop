@@ -40,13 +40,6 @@
 		<div class="form-group">
 			<label for="title"> عنوان فروشگاه </label>
 			<input type="text" class="form-control" name="title" id="title" value="{{old('title') ?? $admin->details->title ?? null}}">
-			<small class="text-muted">
-				<i class="fa fa-asterisk ml-1"></i>
-				عنوان فروشگاه در واقع آدرسی است که در مرورگر وارد میشود تا محصولات فروشگاه به کاربران نشان داده شود.
-				به عنوان مثال اگر عنوان فروشگاه را test قرار دهید،
-				آنگاه آدرس فروشگاه مورد نظر برابر خواهد بود با:
-				<b class="calibri text-info"> {{url('/')}}/test </b>
-			</small>
 		</div>
 	</div>
 	<div class="col-lg-12">
